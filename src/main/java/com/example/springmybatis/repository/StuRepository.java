@@ -50,7 +50,7 @@ public class StuRepository {
 
             // find student data by id
             StudentMapper studentMapper = session.getMapper(StudentMapper.class);
-            stu = studentMapper.getStudent(2);
+            stu = studentMapper.getStudent(id);
             return stu;
         }catch (Exception e){
             e.printStackTrace();
