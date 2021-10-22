@@ -32,19 +32,22 @@ public class MyBatisConfig {
 
         SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
 
-        return builder.build(configuration);
+        SqlSessionFactory sqlSessionFactory = builder.build(configuration);
+
+        return sqlSessionFactory;
     }
 
     public static SqlSessionFactory getSqlSessionFactory(){
         return sqlSessionFactory;
     }
 
+    // 动态 SQL 测试
     public String getStudentByName(String name){
         return new SQL(){
             {
                 SELECT("*");
-                FROM("student");
-                WHERE("name like #{name} || '%");
+                FROM("stuinfo");
+                WHERE("name like #{name} || '%'");
             }
         }.toString();
     }

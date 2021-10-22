@@ -16,6 +16,6 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="org/mybatis/example/mybatis-config.xml"/>
+        <mapper resource="com/example/springmybatis/mapper/StudentMapper.xml"/>
     </mappers>
 </configuration>

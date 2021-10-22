@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springmybatis.mapper.StudentMapper">
+
+    <resultMap id="studentMap" type="com.example.springmybatis.model.Student">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="email" column="email"/>
+        <result property="createDate" column="createDate"/>
+        <result property="updateDate" column="updateDate"/>
+    </resultMap>
+    
+    <select id="selectStudent" parameterType="int" resultType="com.example.springmybatis.model.Student">
+        select * from Stuinfo where id = #{id}
+    </select>
+
+    <insert id="addStudent" parameterType="com.example.springmybatis.model.Student">
+        INSERT INTO stuinfo(id,name,email,createDate,updateDate)
+        VALUES(#{id},#{name},#{email},#{createDate},#{updateDate})
+    </insert>
+
+    <insert id="save">
+        INSERT INTO stuinfo(id,name,email) VALUES(10,'michael','123@sina.com')
+    </insert>
+
+</mapper>

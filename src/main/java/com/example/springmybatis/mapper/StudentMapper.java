@@ -3,30 +3,34 @@ package com.example.springmybatis.mapper;
 import com.example.springmybatis.model.Student;
 import org.apache.ibatis.annotations.*;
 
-import java.util.List;
-
 public interface StudentMapper {
 
-    @Insert("Insert into student(name) values(#{name})")
-    public Integer save(Student student);
+    @Select(value="select id,name,email,createDate,updateDate from stuinfo where id=#{id}")
+    public Student getStudent(Integer id);
 
-    @Update("Update student set name=#{name} where personId = #{personId}")
-    public void updatePerson(Student student);
+    @Insert("insert into stuinfo(id,name,email,createDate,updateDate) "
+            + "VALUES(#{id},#{name},#{email},#{createDate},#{updateDate})")
+    public Integer addStudent(Student student);
 
-    @Delete("Delete from student where personId = #{personId}")
-    public void deletePersonById(Integer studentId);
+    @Update("update stuinfo set name=#{name} where id = #{id}")
+    public Integer updateStudent(Student student);
 
-    @Select("SELECT student.studentId, student.name FROM student where student.studentId = #{studentId}")
-    Student getPerson(Integer studentId);
-
-    @Select("Select studentId,name from student where studentId = #{studentId}")
-    @Results(value={
-            @Result(property = "studentId", column = "studentId"),
-            @Result(property = "name", column = "name"),
-            @Result(property = "address", javaType = List.class,column = "studentId",many=@Many(select = "getAddress"))
-    })
-    public Student getPersonById(Integer studentId);
-
+    @Delete(value="Delete from stuinfo where id = #{id}")
+    public Integer deleteStudent(Integer id);
+//
+//
+//
+//    @Select("Select id,name,email,createDate，updateDate from stuinfo where id = #{id}")
+//    @Results(value={
+//            @Result(property = "id", column = "id"),
+//            @Result(property = "name", column = "name"),
+//            @Result(property = "email", column = "email"),
+//            @Result(property = "createDate", column = "createDate"),
+//            @Result(property = "updateDate", column = "updateDate")
+//    })
+//    public Student getStudentById(Integer id);
+//
+//    public void addStudent(@Param("student") Student student);
 }
 
 
